@@ -3,6 +3,10 @@ let context = canvas.getContext("2d");
 let box = 32;
 let snake = [];
 let direction = "right";
+let comida = {
+    x: Math.floor(Math.random() * 15 + 1) * box,
+    y: Math.floor(Math.random() * 15 + 1) * box
+}
 
 /* Iniciando o Array */
 snake[0] = {
@@ -22,6 +26,12 @@ function criarCobrinha() {
     }
 }
 
+function criarComida() {
+    context.fillStyle = "red";
+    context.fillRect(comida.x, comida.y, box, box);
+
+}
+
 function update(event) {
     if(event.keyCode == 37 && direction != "right") direction = "left";
     if(event.keyCode == 38 && direction != "down") direction = "up";
@@ -38,6 +48,7 @@ function iniciarJogo() {
 
     criarBG();
     criarCobrinha();
+    criarComida();
 
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
